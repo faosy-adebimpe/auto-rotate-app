@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MonitorRotator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f518e013464f85644ba2b88f3a2f0be08bf00b22")]
 [assembly: System.Reflection.AssemblyProductAttribute("MonitorRotator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MonitorRotator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

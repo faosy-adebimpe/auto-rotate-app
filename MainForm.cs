@@ -6,67 +6,42 @@ namespace MonitorRotator;
 
 public class MainForm : Form
 {
-    private readonly Button rotateButton;
-
     public MainForm()
     {
-        Text = "Monitor Rotator";
+        // Keep the form invisible.
+        ShowInTaskbar = false;
+        WindowState = FormWindowState.Minimized;
+        FormBorderStyle = FormBorderStyle.FixedToolWindow;
+        Opacity = 0;
 
-        StartPosition = FormStartPosition.CenterScreen;
-
-        ClientSize = new Size(300, 180);
-
-        FormBorderStyle = FormBorderStyle.FixedSingle;
-
-        MaximizeBox = false;
-
-        MinimizeBox = true;
-
-        rotateButton = new Button
-        {
-            Text = "↻  Rotate Monitor",
-            Font = new Font(
-                "Segoe UI",
-                14,
-                FontStyle.Regular),
-            Width = 220,
-            Height = 60,
-            Left = 40,
-            Top = 50,
-            TabIndex = 0
-        };
-
-        rotateButton.Click += RotateButton_Click;
-
-        Controls.Add(rotateButton);
+        Load += MainForm_Load;
     }
 
-    private void RotateButton_Click(
+    private void MainForm_Load(
         object? sender,
         EventArgs e)
     {
         try
         {
-            rotateButton.Enabled = false;
-            rotateButton.Text = "Rotating...";
-
             DisplayManager.RotateExternalMonitor();
 
-            rotateButton.Text = "↻  Rotate Monitor";
+            // Rotation completed successfully.
+            Close();
         }
         catch (Exception ex)
         {
+            // Show an error only if something goes wrong.
+            Opacity = 1;
+            WindowState = FormWindowState.Normal;
+            ShowInTaskbar = true;
+
             MessageBox.Show(
                 ex.Message,
                 "Monitor Rotator",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
 
-            rotateButton.Text = "↻  Rotate Monitor";
-        }
-        finally
-        {
-            rotateButton.Enabled = true;
+            Close();
         }
     }
 }
